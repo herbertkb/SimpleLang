@@ -13,7 +13,7 @@ grammar SimpleLang;
 @members {
     Map<String, Object> symbolTable = new HashMap<String, Object>();
     
-    int evaluate(int operator, int left, int right) {
+    int evaluate(String operator, int left, int right) {
         switch ( operator ) {
             case '*' : return left * right;
             case '/' : return left / right;
@@ -22,7 +22,7 @@ grammar SimpleLang;
         }
     }
     
-    String evaluate(int operator, String s, int i) {
+    String evaluate(String operator, String s, int i) {
         switch (operator) {
             case '*' : return ;
             case '/' : return s; // TODO: throw error 
@@ -64,11 +64,11 @@ declareString:  'var' ID (',' ID)* 'string' ('=' expression)?
             
 declareInferred: ID ':=' expression 
             { 
-                if (String.isAssignableFrom($expression.type)) {
+                if (String.isAssignableFrom($expression.value)) {
                     symbolTable.put($ID, $expression.text);
                 }
                 else {
-                    symbolTable.put($ID, $expression.int);
+                    symbolTable.put($ID, Integer.valueOf($expression.text));
                 }
             }
             ;
@@ -83,7 +83,8 @@ expression returns [Object value] :
             '(' expression ')' 
                 { $value = $expression.value; }
             |   expression OPERATOR expression
-                { $value = evaluate($expression.value);}
+                { $value = evaluate($OPERATOR.text $expression.value);}
+                
             |   ID     { $value = symbolTable.get($ID.text); } 
             |   STRING { $value = $STRING.text; }
             |   INT    { $value = $INT.int;     }
