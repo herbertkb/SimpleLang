@@ -24,8 +24,7 @@ Keith Herbert
     
     print       ->  'print' expression NEWLINE
     
-    expression  ->  expression
-                    |   '(' expression ')'
+    expression  ->  '(' expression ')'
                     |   expression OPERATOR expression
                     |   ID
                     |   STRING
@@ -45,3 +44,18 @@ Keith Herbert
  ```
 
 ## Interpreter
+
+Simply run the provided shell scipt to begin. Finish input with CTRL+D.
+    $ ./run.sh
+    generating parser from SimpleLang.g4
+    compiling parser and lexer
+    SimpleLang is running. Enter statements. Finish with EOF or CTRL-D
+    a = 1
+    b = "hello"
+    c := b + 1
+    print c
+
+    ello
+
+    
+
