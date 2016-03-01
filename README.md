@@ -46,6 +46,7 @@ Keith Herbert
 ## Interpreter
 
 Simply run the provided shell scipt to begin. Finish input with CTRL+D.
+
     $ ./run.sh
     generating parser from SimpleLang.g4
     compiling parser and lexer
