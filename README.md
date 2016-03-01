@@ -18,12 +18,16 @@ Keith Herbert
 
     declareInt      ->  'var' ID {, ID} 'int' ['=' expression] NEWLINE  
     declareString   ->  'var' ID {, ID} 'string' ['=' expression] NEWLINE
-    declareInferred ->  ID ':=' (STRING|INT) NEWLINE
+    declareInferred ->  ID ':=' (INT|STRING) NEWLINE
 
     assignment  ->  ID '=' expression NEWLINE
+    
+    print       ->  'print' expression
+    
     expression  ->  expression
                     |   '(' expression ')'
                     |   expression OPERATOR expression
+                    |   ID
                     |   STRING
                     |   INT      
 
@@ -32,7 +36,7 @@ Keith Herbert
  ```
 ### Lexical Rules
  ```
-    ID -> LETTER{CHAR}
+    ID -> [a-zA-Z][a-zA-Z0-9]*
     INT -> '-'?[1-9][0-9]*
     NEWLINE -> '\r'?'\n'
     OPERATOR -> ('*' | '/' | '+' | '-')
