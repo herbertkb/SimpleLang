@@ -8,7 +8,7 @@ Keith Herbert
 
 ### Syntax Rules
  ```
-    program     ->  {statement}
+    program     ->  statement*
     statement   ->  declareInt
                     | declareString
                     | declareInferred
@@ -22,7 +22,7 @@ Keith Herbert
 
     assignment  ->  ID '=' expression NEWLINE
     
-    print       ->  'print' expression
+    print       ->  'print' expression NEWLINE
     
     expression  ->  expression
                     |   '(' expression ')'
